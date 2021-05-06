@@ -21,6 +21,12 @@ const Login = (props) =>{
 
                     <img src="/images/login-hero.svg" alt=""/>
                 </Title>
+                <Form>
+                    <Google>
+                        <img src="/images/google.svg" alt=""/>
+                        Sign in with google
+                    </Google>
+                </Form>
             </Body>
         </Container>
     )
@@ -87,6 +93,7 @@ const Sign = styled.a`
     text-align: center;
     &:hover{
         background-color: rgba(112,181,249,0.16); 
+        box-shadow: inset 0 0 0 2px #0a66c2;
     }
     @media (max-width: 768px){
             padding: 8px 10px; 
@@ -126,7 +133,7 @@ const Title = styled.div`
         line-height: 68px;
         @media (max-width: 768px){
             text-align: center;
-            width: 100%auto;
+            width: 100%;
             font-size: 22px;
             line-height: 2;   
         }
@@ -146,4 +153,32 @@ const Title = styled.div`
 
     }
 `;
+
+const Form = styled.div`
+    margin-top: 100px;
+    width: 408px;
+    @media (max-width: 768px){
+        margin-top: 20px;
+    }
+`;
+const Google = styled.button`
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 20px;
+    border-radius: 18px;
+    vertical-align: middle;
+    transition-duration: 200ms;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0 / 60%), inset 0 0 0 2px rgba(0, 0, 0 / 0%) inset 0 0 0 1px rgba(0, 0, 0 / 0);
+    cursor: pointer;
+    &:hover {
+        background-color: rgba(207, 207, 207, 0.35);
+        color: rgba(0, 0, 0, 0.85);
+    }
+`;
+
+
 export default Login;
