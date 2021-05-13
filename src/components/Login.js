@@ -168,12 +168,15 @@ const Google = styled.button`
     width: 100%;
     height: 40px;
     color: rgba(0, 0, 0, 0.6);
-    font-size: 20px;
+    font-size: 18px;
     border-radius: 18px;
     vertical-align: middle;
     transition-duration: 200ms;
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0 / 60%), inset 0 0 0 2px rgba(0, 0, 0 / 0%) inset 0 0 0 1px rgba(0, 0, 0 / 0);
     cursor: pointer;
+    img{
+        margin-right: 4px;
+    }
     &:hover {
         background-color: rgba(207, 207, 207, 0.35);
         color: rgba(0, 0, 0, 0.85);
