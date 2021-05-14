@@ -84,13 +84,14 @@ const Container = styled.div`
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     left: 0;
     top: 0;
-    padding: 0 24px;
+    padding: 0px;
     padding-top: 8px;
     position: fixed;
     width: 100vw;
     z-index: 999;
     @media (max-width: 768px){
         padding-bottom: 8px;
+        padding-left: 10px;
         .messaging{
             top: 0;
             right: 0;
