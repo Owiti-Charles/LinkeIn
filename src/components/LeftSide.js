@@ -155,7 +155,7 @@ const Widget = styled.div`
             justify-content: space-between;
             padding: 2px 2px;
             width: 100%;
-            color: rgba(0, 0, 0, 0.5); 
+            color: rgba(0, 0, 0, 0.6); 
             font-weight: 600; 
             p{
                 color: #0a66c2;

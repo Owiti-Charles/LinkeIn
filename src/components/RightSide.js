@@ -80,6 +80,7 @@ const Title = styled.div`
 
 const FeedList = styled.ul`
     margin-top: 16px;
+    cursor: pointer;
     li {
         align-items:center;
         margin: 12px 0 15px;
@@ -93,6 +94,8 @@ const FeedList = styled.ul`
             
         }
         button {
+
+            cursor: pointer;
             margin-top: 6px;
             background-color: transparent;
             color: rgba(0, 0, 0, 0.6);
