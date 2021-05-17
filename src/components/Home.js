@@ -36,20 +36,16 @@ const Content = styled.div`
 
 const LayOut = styled.div`
     display: grid;
-    grid-template-areas: "left main rigt";
-    grid-template-columns: minmax(0, 7fr) minmax(0, 12fr) minmax(300px, 7fr);
-    grid-template-rows: auto;
-    margin: 25px 0;
+    grid-template-areas: "left main rightside";
+    grid-template-columns: minmax(0, 5fr) minmax(0, 12fr) minmax(300px, 7fr);
     column-gap: 25px;
     row-gap: 25px;
-    @media (max-width: 768px){
+    margin: 25px 0;
+    @media (max-width: 768px) {
         display: flex;
-        padding: 0 5px;
         flex-direction: column;
-
+        padding: 0 5px;
     }
-
-
 `;
 
 export default Home;

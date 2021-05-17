@@ -21,15 +21,20 @@ function LeftSide(props) {
                 </UserInfo>
                 <Widget>
                     <a>
-                        <div>
-                            <span>
-                                <p>Connections</p> 
-                                <p>100</p>
-                            </span>
-
-                            <span>Who viewed your profile</span>
-                        </div>
+                        <span>
+                            Connections
+                            <p>100</p>
+                        </span>
                     </a>
+                    <a>
+                        <span>
+                            Who viewed your profile
+                            <p>20</p>
+                        </span>
+                    </a>
+
+
+
                 </Widget>
                 <Item>
                     <span>
@@ -47,7 +52,7 @@ function LeftSide(props) {
                 <a>
                     <span>
                         Events
-                        <img src="/images/plus-icon.svg" alt=""/>
+                        <img src="/images/plus-icon.svg" alt="" />
                     </span>
                 </a>
                 <a>
@@ -77,7 +82,7 @@ const ArtCard = styled.div`
     border-radius: 8px;
     transition: box-shadow 83ms;
     border: none;
-    box-shadow: 0px 0px 0px 1px rgba(0,0,0 / 15%), 0px 0px 0px 1px rgba(0,0,0 / 20%); 
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 0 0 rgb(0 0 0 / 20%);
 `;
 
 const UserInfo = styled.div`
@@ -140,33 +145,27 @@ const Widget = styled.div`
         align-items:center;
         justify-content: space-between;
         text-decoration: none;
+        flex-direction: column;
         padding: 4px 12px;
-        div{
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            span{
-                line-height: 1.33;
-                font-size: 12px;
-                display:flex;
-                justify-content: space-between;
-                &:first-child{
-                    padding: 6px 2px;
-                    width: 100%;
-                   color: rgba(0, 0, 0, 0.5); 
-                   font-weight: 600; 
-                   
-                   &:hover{
-                    color: rgba(0, 0, 0, 0.7); 
-                   }
-                }
-                &:nth-child(2){
-                    padding: 6px 2px;
-                    font-weight: 600; 
-                    color: rgba(0, 0, 0, 0.8); 
-                }
+       
+        span{
+            line-height: 1.33;
+            font-size: 12px;
+            display:flex;
+            justify-content: space-between;
+            padding: 2px 2px;
+            width: 100%;
+            color: rgba(0, 0, 0, 0.5); 
+            font-weight: 600; 
+            p{
+                color: #0a66c2;
             }
+            
         }
+        &:hover{
+                background-color:rgba(0, 0, 0, 0.08);
+            }
+
     }
 
 `;
