@@ -1,18 +1,21 @@
 import styled from 'styled-components';
 import LeftSide from './LeftSide';
 import Main from './Main';
-import Navbar from './Navbar';
 import RightSide from './RightSide';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 const Home = (props) => {
     return (
         <div>
             <Container>
+                {!props.user && <Redirect to='/' />}
                 <Content>
                     <LayOut>
-                        <LeftSide/>
-                        <Main/>
-                        <RightSide/>
+                        <LeftSide />
+                        <Main />
+                        <RightSide />
                     </LayOut>
                 </Content>
             </Container>
@@ -48,4 +51,15 @@ const LayOut = styled.div`
     }
 `;
 
-export default Home;
+
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.userState.user,
+    }
+};
+
+const mapDispatchToProps = (dispatch) =>({});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

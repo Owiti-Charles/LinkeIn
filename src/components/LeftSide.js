@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 function LeftSide(props) {
@@ -9,14 +10,31 @@ function LeftSide(props) {
                     <CardBackground />
                     <a>
                         <Photo>
-
+                        {props.user && props.user.photoURL ?
+                             <img src={props.user.photoURL} alt="" />
+                        :
+                            <img src="/images/item-icon.svg" alt="" />
+                        }
+                       
                         </Photo>
-                        <Link>
-                            Welcome, mouse
+                        {props.user && props.user.displayName ?
+                         <Link>{props.user.displayName}</Link>
+                         :
+                         <Link>
+
+                         Welcome, User
                         </Link>
+                        }
+                        
                     </a>
                     <a>
-                        <AddPhoto>Add photo</AddPhoto>
+                        {
+                            props.user && props.user.email ? 
+                            <AddPhoto>{props.user.email}</AddPhoto>
+                            :
+                            <AddPhoto>Add photo</AddPhoto>
+                        }
+                        
                     </a>
                 </UserInfo>
                 <Widget>
@@ -102,19 +120,19 @@ const CardBackground = styled.div`
 `;
 
 const Photo = styled.div`
-    background-image: url(/images/photo.svg);
     border: none;
     width: 74px;
     height: 74px;
-    background-repeat: no-repeat;
-    box-sizing: border-box;
-    background-clip: content-box;
-    background-position: center;
-    background-color: white;
-    background-size: 60%;
     margin: -38px auto 12px;
-    border-radius: 50%;
-    border: 2px solid white;
+    
+    img{
+        border: 2px solid white;
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        position: relative;
+        object-fit: contain;
+    }
 `;
 
 const Link = styled.div`
@@ -229,4 +247,14 @@ const CommunityCard = styled(ArtCard)`
     }
 
 `;
-export default LeftSide;
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.userState.user,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => ({});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(LeftSide);
