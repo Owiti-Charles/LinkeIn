@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import ReactPlayer from 'react-player';
+import firebase from 'firebase';
+import { postArticleAPI } from '../actions'
+
 
 const PostModal = (props) => {
 
@@ -14,6 +17,25 @@ const PostModal = (props) => {
         setUploadImage("");
         setVideoLink("");
         setAssetArea(area);
+    };
+
+
+    const postArticle = (e) => {
+        e.preventDefault();
+        if (e.target !== e.currentTarget) {
+            return;
+        }
+
+        const payload = {
+            image: uploadImage,
+            video: videoLink,
+            user: props.user,
+            description: inputText,
+            timestamp: firebase.firestore.Timestamp.now()
+        }
+        console.log(payload);
+        props.postArticle(payload)
+        reset(e)
     }
 
     const handleChange = (e) => {
@@ -71,34 +93,34 @@ const PostModal = (props) => {
 
                                 {
 
-                                assetArea ==="image" ?
+                                    assetArea === "image" ?
 
-                                <UploadImage>
-                                    <input type="file"
-                                        accept="image/gif, image/jpeg, image/png, image/jpg"
-                                        name="image"
-                                        id="file"
-                                        style={{ display: "none" }}
-                                        onChange={handleChange}
-                                    />
-                                    <p><label htmlFor="file" style={{ cursor: 'pointer' }}>Select a image to share</label></p>
-                                    {uploadImage && <img src={URL.createObjectURL(uploadImage)} />}
-                                </UploadImage>
-                                :
-                                assetArea === 'media' &&
-                                <>
-                                    <input
-                                        type="text"
-                                        placeholder="Please input a video link"
-                                        value={videoLink}
-                                        style={{outline:"none"}}
-                                        onChange={(e) => setVideoLink(e.target.value)}
-                                    />
-                                    {
-                                        videoLink &&
-                                        <ReactPlayer width={'100%'} url={videoLink} />
-                                    }
-                                </>
+                                        <UploadImage>
+                                            <input type="file"
+                                                accept="image/gif, image/jpeg, image/png, image/jpg"
+                                                name="image"
+                                                id="file"
+                                                style={{ display: "none" }}
+                                                onChange={handleChange}
+                                            />
+                                            <p><label htmlFor="file" style={{ cursor: 'pointer' }}>Select a image to share</label></p>
+                                            {uploadImage && <img src={URL.createObjectURL(uploadImage)} />}
+                                        </UploadImage>
+                                        :
+                                        assetArea === 'media' &&
+                                        <>
+                                            <input
+                                                type="text"
+                                                placeholder="Please input a video link"
+                                                value={videoLink}
+                                                style={{ outline: "none" }}
+                                                onChange={(e) => setVideoLink(e.target.value)}
+                                            />
+                                            {
+                                                videoLink &&
+                                                <ReactPlayer width={'100%'} url={videoLink} />
+                                            }
+                                        </>
                                 }
                             </Editor>
 
@@ -115,7 +137,7 @@ const PostModal = (props) => {
                                         <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm1 13a1 1 0 01-.29.71L16 14l-2 2-6-6-4 4V7a1 1 0 011-1h14a1 1 0 011 1zm-2-7a2 2 0 11-2-2 2 2 0 012 2z"></path>
                                     </svg>
                                 </AttachButtons>
-                                <AttachButtons onClick={() => switchAssetArea('media')}> 
+                                <AttachButtons onClick={() => switchAssetArea('media')}>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" width="24" height="24" focusable="false">
                                         <path d="M19 4H5a3 3 0 00-3 3v10a3 3 0 003 3h14a3 3 0 003-3V7a3 3 0 00-3-3zm-9 12V8l6 4z"></path>
                                     </svg>
@@ -129,7 +151,7 @@ const PostModal = (props) => {
                                     <span>Anyone</span>
                                 </AttachButtons>
                             </ShareComment>
-                            <PostButton disabled={!inputText ? true : false}>Post</PostButton>
+                            <PostButton disabled={!inputText ? true : false} onClick = {(event) => postArticle(event)} >Post</PostButton>
                         </SharePost>
                     </Content>
                 </Container>
@@ -321,6 +343,8 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+    postArticle: (payload) => dispatch(postArticleAPI(payload))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostModal);
